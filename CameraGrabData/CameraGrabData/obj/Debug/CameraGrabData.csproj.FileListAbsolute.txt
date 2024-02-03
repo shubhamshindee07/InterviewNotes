@@ -1,0 +1,13 @@
+C:\Shubham\IDMVS\CameraGrabData\CameraGrabData\bin\Debug\CameraGrabData.exe.config
+C:\Shubham\IDMVS\CameraGrabData\CameraGrabData\bin\Debug\CameraGrabData.exe
+C:\Shubham\IDMVS\CameraGrabData\CameraGrabData\bin\Debug\CameraGrabData.pdb
+C:\Shubham\IDMVS\CameraGrabData\CameraGrabData\bin\Debug\MvCodeReaderSDK.Net.dll
+C:\Shubham\IDMVS\CameraGrabData\CameraGrabData\bin\Debug\MvCodeReaderSDK.Net.pdb
+C:\Shubham\IDMVS\CameraGrabData\CameraGrabData\obj\Debug\CameraGrabData.csprojAssemblyReference.cache
+C:\Shubham\IDMVS\CameraGrabData\CameraGrabData\obj\Debug\CameraGrabData.Form1.resources
+C:\Shubham\IDMVS\CameraGrabData\CameraGrabData\obj\Debug\CameraGrabData.Properties.Resources.resources
+C:\Shubham\IDMVS\CameraGrabData\CameraGrabData\obj\Debug\CameraGrabData.csproj.GenerateResource.cache
+C:\Shubham\IDMVS\CameraGrabData\CameraGrabData\obj\Debug\CameraGrabData.csproj.CoreCompileInputs.cache
+C:\Shubham\IDMVS\CameraGrabData\CameraGrabData\obj\Debug\CameraGrabData.csproj.CopyComplete
+C:\Shubham\IDMVS\CameraGrabData\CameraGrabData\obj\Debug\CameraGrabData.exe
+C:\Shubham\IDMVS\CameraGrabData\CameraGrabData\obj\Debug\CameraGrabData.pdb
