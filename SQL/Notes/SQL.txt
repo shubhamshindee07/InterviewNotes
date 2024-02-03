@@ -1,0 +1,230 @@
+Temp tables :
+There are two types of temp tables 
+1. local
+Local temp tables can be created by using #key word as prefix in create query.
+Local temp tables will get created with some random numbers.
+Local tem tables are accessible to the connection which creates temp table.
+Local temp table is dropped when the created temp table connection is closed.
+
+2. Global
+Local temp tables can be created by using ##key word as prefix in create query.
+Local temp tables will get created without random numbers.
+Local tem tables are accessible to all the connections 
+Local temp table is dropped when the last refereing connection to that is closed.
+
+
+Views :
+Views are similar to table but its virtual table and to create view use create view ViewName
+Views provides row and column level security.
+We can add, delete and update the view as well.
+If we join multiple tables and going to upate the view then base tables might not get update correctly. instead triggers we used at that time.
+
+IN and NOT IN
+1. This has bottom to top approach. First inner query will get execute and then outer.
+2. Outer query will give one record that we will check in inner query table if IN then it will return true or else false.
+3. Select Ename from employee where EID IN(select EID from DeptDetails)
+
+EXIST and NOT EXIST
+1. This has the top to bottom approach. First outer query will get execute and then inner. Inner query will get execute multiple times.
+2. select * from Employee EID EXIST(select EID from project where Employee.EID = Project.EID)
+
+
+CHAR vs VARCHAR
+1. Both are used to store characters
+2. Char in fixed length means if you assign size 15 and you enter only three characters then char will occupy other space also.eg ca use->Telephone,postalcode
+3. Varchar is kind opposie is variable length if you assign 15 length and you add 3 characters then it will take only three length.eg->Name
+
+Constraints in sql
+1.Unique - column value should be unique
+2.Not null - column value should not be null.
+3.Primary key
+4.Foreign key
+5.Check - Its a condition before adding to datatabase Check(age > 10)
+6.Default - Giving default value to coumn in case use dosnt enter anything.
+
+
+Stored procedures
+1.Stored procedure creat by using Create Procedure or proc procName.
+2.If you wanted to execte some query again and again then we can create one store proc for that then we dont need to write same query again and again.
+3.Stored procedure Syntax
+Creat Proc getEmp
+as
+begin
+select * from Employee
+end
+
+4.we can pass the parameters in stored procedures as well
+Create Proc getEmp
+@ID int
+as
+begin
+select * from employee where ID=@ID
+end
+
+5.We can use the out parameters to get an output value from stored procedure.
+Create proc getEmp
+@ID int 
+@Name varchar(10) output
+as 
+begin 
+select name from employee where ID=@ID
+end
+
+Declare @name varchar(10)
+exec getEmp ID=@ID, @Name=@name output
+print @name
+
+6.We can return the values from procedure by using return but we can only return int type.
+Create proc getEmp
+as 
+begin 
+return count(ID) from employee
+end
+
+Declare @Id int
+exec @Id=getEmp
+print @Id
+
+
+SQL injection attack
+1. Normally if we build dynamic query at application side at that time there are a chances that we might get sql injection attack.
+2. Like If we have text box and query is like select * from + Textbox1; at that time if user puts TableName1'; Drop Table tableName; then both 
+queries will get executed and will get in injection attack.
+3. To avoid that we can use parameterized quries and stored procedures.
+
+Stored procedures vs functions
+1. Stored procedures we cannot used in select and with where clause but functions we can use, we can use functions in stored procedure as well.
+2. Stored procedures is not always returns value it depends on logic but functions must return value.
+3. We can use try catch, transactions in procedures but in functions we cannot.
+4. Stored procedures are precompiled and it has a execution plan is saved. same execution plan is used when it called. But function will get compiled
+and executed everytime.
+
+Why need to use Stored procedure instead sql qury.
+1. Reduce network traffic between applictaion and database we dont need to send too much lines of sql statements.
+2. Stored procedures are reusable.
+3. Stored proc execution plan will get saved and it will not get change when we called. But in sql query even if we do some slight change in query then
+Execution query plan will get change. so Stored proc are faster than sql queries.
+4. we can use try catch transactions in procedures.
+
+
+Limit clause
+IT returns the no of the records we mentioned. eg select name from emp limit 2.
+
+Substring
+Select Substring('SLQ preparation',1,3) -> SQL
+
+Normalization
+This is the way of properly organizing database. There are three anamolies we need to remove 1.Insert 2. delete 3.update. We can implement 
+1NF,2Nf,3NF these.
+1.1NF -> Basically In 1NF, we don't need to put multiple values in same column.
+2.2NF -> Move redundent data into seperate table and create relation between them by using foreign key.
+3.3NF -> We need to implement first both 1st and 2nd NF. We need to remove dependent columns or we can create seperate table for it. eg- salary, calculated salary
+Calculated salary is dependent on salary so we can remove calculated salaray because this is computed. eg2 -> dptname, dpthead
+
+Indexex
+Indexex are helps us in searching data in table. which makes faster searching.
+1. Clustered -> This index determines the physical order of the data. we can create only one clustred index per table but we can apply it on multiple columns.
+If we uses primary key to some column will automatically creates clustered index.
+create clustred index IX_indexName
+on TableName(Salary asc)
+
+2.Non clustred index -> This index helps to fast searching. Because Sql stores seperate table for non clustred index column with some address and this address
+helps us to directly fetch data from actual table. We can create muliple non-clustred indexex. This are slightly slower than the clustred index because of 
+extra lookup. It requires a little more space than clustred index.
+create non clustred index IX_indexName
+on tablename(salary)
+
+3.Unique and non unique -> Unique index identifies uniquenes of the column. Primary key or clustred index internally uses unique index. and uniqe constrains
+internally used unique index.
+
+
+Triggers in SQL
+Triggers will get fired when we do some operation on created table like insert delete update.
+There are two types of DML triggers 1.After triggers 2.Instead of trigger.
+1.After triggers will get fired after respective statements execution is completed.
+2.Instead of triggers will get fired instead of respective statements will get fired.
+3.After and Instead both triggers are applicable for insert, update, delete.
+4.Instead of triggers will mostly we used to update the views in proper way.
+5.There are two tables we will use in triggers is inserted and deleted.
+6.Inseted tables contains latest data.
+7.Deleted tables contains old previous data.
+8.After trigger example is Audit log.
+9.Instead of trigger example is to update views.
+10.To iterate through insterted table we can use temp tables.(suppose if user update or deletes multiple records).
+
+After trigger syntax
+Create trigger TriggerName
+on TableName
+For Delete/Insert
+as 
+begin
+	Declare @ID int
+	select @ID=ID from inserted.	
+	//do some opertion
+END
+
+Instead trigger syntax
+Create trigger TriggerName
+on TableName
+Instead Insert/update/delete
+as
+begin
+	//do some operation	
+ENd
+
+Execution plan of query
+1.This execution plam is dependent on idexex which we create on Table.
+2.Sql engine identifies the best way to run sql query depending on indexex and that we can called execution plan of query.
+3.we can also see an option in sql management to visually see execution plan of query.
+
+
+Trasnactions in  + Acid properties
+1. Atomic - which states that the transaction is either completed successfully or complete transaction is rolled back.
+2. Consistent - Data should be consistently updated in database. Means half updation and half not that leads to inconsistency.
+3. Isolation - Which states that the transaction should not interfare with each other.  Most database uses locking to maintain the transaction.
+4. Durability - Durability means after successfull transaction this data should be permanently saved in database.
+
+Begin try
+Begin transaction 
+updae EMP set FIrstName= "Shubham" where ID=2
+delete from EMp where ID =2
+Commit transaction
+end try
+Begin Catch
+Rollback transaction
+End Catch
+
+
+
+--------------ADO.NET
+Dataset vs Datareader(This are two objects of ADO.net)
+1.DataSet is disconnected architectre. -> Means after fetching data from database and you fill that data in dataSet. and if you close sql connection even
+though we can access dataset data.
+2.Datareader is connected architecture. ->But in this case once connection is closed we cannot access data from datareader.
+
+Dataset vs Datatable
+1.Datatable contains single table.
+2.Dataset contains multiple tables.
+
+Execute methods of ADO.net
+1.ExecuteScalar -> It returns single value from database like first row first column.
+2.ExecuteNonQuery -> In which we used insert,update,delete, Alter, drop etc. Execute non query returns how many rows are affected.
+2.ExecuteReader -> It returns resultset. and also this works with insert update delete statemenst.
+
+Data Providers in ADO.net
+1.SqlClient -> which is used to connect to sql databae.It is good for middle-tier applications, single-tier applications that use Microsoft SQL Server.
+2.OLEDB -> which is used to connect like MSAcess database.It is good for single-tier applications that use Microsoft Access databases.
+3.ODBC -> It is good for middle and single-tier applications that use ODBC data sources.
+
+Database pooling
+1. By Default Ado.net database pooling is enabled. when we try to connect or establish a connection with database there are couple of steps perormed.
+after the connection is esatblish at first time this connection object is sent to the pool and will be used whwnever we again try to open connection. 
+two connection pool for two string variables for the same string eg string string1="connectionstring"  string string2="connectionstring"  
+
+
+
+
+
+
+
+

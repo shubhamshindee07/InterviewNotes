@@ -1,0 +1,102 @@
+/* syntax */
+/* selector{
+    property1: value1;
+    property2:value2;
+} */
+
+/* element Selector */
+body{
+    background-color: beige;
+    /* background-image: url("images/IMG_3348.JPG"); */ 
+    /* background-repeat: repeat-x; */
+    /* background-repeat: repeat-y; */
+    /* height: 120px; */
+    /* background-size: cover; */
+    /* background-position: center; */
+    /* margin-top: 100px; */
+    /* background-attachment: fixed; */
+    /* margin: 0; */
+}
+
+/* P{
+    background-color: brown;
+} */
+
+/* id Selector */
+#FirstPara{
+    background-color: rgb(0, 26, 255);
+}
+
+/* class selector  */
+
+.MyFirstDivClass{
+    background-color:darkcyan;
+}
+
+#InsideFirstDivPara{
+    border-style: dashed;
+    border-top-style: groove;
+    border-width: 5px;
+    border-color: brown;
+    border-radius: 2px;
+}
+
+/* text formatting */
+#TextFormatingPara{
+    color: antiquewhite;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* text Decoration */
+.MyFirstDivClass a{
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+a:hover{
+    font-size: large;
+    color: chartreuse;
+}
+
+.flexeg > div{
+    height: 50px;
+    width: 50px;
+    background-color: darkred;
+    margin: 2px;
+}
+
+.flexeg{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-content: baseline; */
+    background-color: coral;
+    height: 150px;
+    /* align-items: center; */
+}
+
+.PararememEg{
+    background-color: cornflowerblue;
+    text-align: center;
+    font-size: 10px;
+}
+#Div1{
+    position:sticky;
+    top: 5px;
+    background-color: aliceblue;
+}
+
+#Para1{
+    font-size: 6em;
+}
+
+#para2{
+    font-size: 2vw;
+}
+
+
+
+

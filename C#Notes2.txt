@@ -1,0 +1,200 @@
+Components of dot net framerowk.
+1. BCL(Base class Liberary) : Is a collection of classes that provides wide range of functionality to developers.
+2. CTS(Common Type System) : Is a set of rules that defined how tyes are declared, used and managed in dot net framework.
+3. CLS(Common language specification) : CLS is a subset of CTS. which defines the set of rules that every language must follow which runs under
+dot net framework.
+
+Design principles
+Solid design principles are a set of principles which needs to follow to develop flexible and maintainable software.
+1.Single responsibility : Classes should have seperate its own resposibility. If we mixup then we will violet single responsibility principle.
+2.Open closed principles : Classes or modules should be open for extension, but closed for modification. If we want to follow this principle we must
+need to first follow SRP.
+3.Interface segregation principle : It is kind of SRP In interface we dont need to put irrelevent methods. Instead we can create smaller interfaces with
+relevent methods.
+4.Liskov Substitution principles : It states that the object of the child class must be able to replace an objct of the parent class without braking
+the application this is the defination of this. Basically we need to create single respnsibilty base class so all the base class metods will be
+applicable for derived classes.
+5.Dependancy Inversion principle : States that a higher level class sould not be dependent upon lower level class. we can achieve this principle by using 
+dependency injection is one of the way. for eg logger creater objet in method
+ 
+Design patterns : 
+1. Singleton design pattern - > single object return
+2. Factory design pattern -> This is a creational design pattern .This factory will give you an instance an hides the instantiation logic.
+3. Abstract factory design pattern -> This a bit difer than factory design pattern, there are one abstract class
+involves which can be used to get particualr type of instance.
+4. Observer pattern : Like eventhandler.
+
+
+WPF architecture :
+Is a three layer architecture.
+Layer 1(WPF managed layer) : 
+1)Windows base, Presentation framework, Presentation core. -> These DLLs are default presenent in wpf application. These DLLs provides required classes 
+which are required to work in wpf.
+
+Layer 2(WPF unmanaged layer) : 
+1)milcore, windowscodecs -> milcore dll act as an bridge between WPF managed and Unmanaged layer. Windowscodecs dll is responible to show or render graphics
+on screen.
+
+Layer 3
+1)CLR
+2)DirectX -> Responsible for 3d animation part.
+3)User32 -> Responsible for windows look and feel for our control
+4)GDI -> Same
+5)Device drivers -> 
+
+
+Task, asynk and await.
+1. Async and await we can use in our method If we dont want to block our application and make responive application when high or long process starts.
+2. We can use Task and Thread also to accomplish this task but there are some differences.
+3. If we use Task and by using awaiting particular task which we are starting from method which holds the execution code to that line until Task will get complete.
+4. In thread If we start the thread. It will not hold the execution of the code at this point but main thread will executes remaing lines from method. so
+to resolve this we need to use thread.join method to hold the execution at particualr point.
+
+
+Process vs threads.
+1. Process which has data, code, stack and registers and by using system call which is fork which is used to generate child processes. So child also 
+the copy of the parent process which also contains data code stack and registers.
+2. But in thread multiple threads by sharing same code and data.
+
+Concurrency vs parallelism
+1. Async and await which comes under concurrency and also resposible for responsive UI. They did not create and runs by creating seperate thread.
+2. If we have two task then they will do context switching or time slicing so the task 1 will perform some time then task 2 Then again task 1 
+3. Task and threads which comes under parallel processing both runs seperate from main thread. which sometimes leads to responsive application.
+
+Race condition in c#
+1. When multiple threads wants to access or modify shared resources due to that might our application misbihave, crash or hangs or will get an unpredicable output
+This is the race condition. To avoid this we can use Thread synchronization and thread saftey.
+
+
+Const and Readonly
+1. Const : we cannot change the value of the constants.
+2. Readonly : we can change the value or reassign again of the readonly variable but only in construtor
+
+
+Protected internal vs Internal
+1. Internal methods or the class which is accessible only within current assembly. we cannot access it from some other assembly or project.
+2. Protected internal can be accessible for the another assembly if that class inerited with that class.
+
+Public,private,protected.
+1. public can be accessible anywhere.
+2. private has the highest security.Only the own class access it no other class will access private methods or variables.
+3. Protected are not acceesible outside of the class but can be accessible if we inherit that class within assembly or some in other assembly as well. 
+4. Protected internal are accessible outside of the class within the same assembly. But you cannot access it fromsome other assembly.
+
+RelativeSource AncestorType - 
+1. DataGrid DataContext: This is the DataContext specifically set on the DataGrid within the UserControl. It can be set explicitly through the "ItemsSource" 
+property or implicitly by the control hosting the user control 
+2. By using RelativeSource AncestorType={x:Type UserControl}, you explicitly specify that the command should be found in the DataContext of the UserControl that
+defines the DataGrid, not the individual data item or the DataGrid itself. This ensures the correct context for handling cell-specific validation.
+
+As and Is Keyword
+1. As - If we want to convert variable into its actual datatype at that time we can use As keyword. EG Object obj= "Shubham"; string Name= obj as string.
+2. Is Keyword - If we want to check the datatype of the variable at time we can use Is keyword means If I have Object which is assigned with string then
+Object obj="shubham" if(obj is string){}
+
+If class have Static and Public contructor which one will get called when we create an instance of class?
+1. static first then public. In case if we call static method directly then static constructor will get called.
+
+Debug vs Release
+1. Debug mode is used when our priority is to debug or application.
+2. In case of Release model appliation priority will be performance. 
+3. We also have #DEUBG region whatevever code is written in the Debug region will get extecuted only in debug mode.
+
+Lazy loading
+1. Lazy loading is used when we want to dealy loading of particualr collection or we want to load the collection whenever we want at that time we will use 
+lazyloading
+2. Lazy keyword we need to use we initialize or declare the method which will get executed when we want to get the values of collection.
+
+Assembly.
+1. Assembly you can say it is a bunch of code, we can say Assembly can be a dll or .exe. 
+
+what are the three AAA in unit testing
+Arrange
+Act
+Assert
+
+Finallize and Idisposable
+1. Finalize and Idisposable both resposible for memory management and to release memory.
+2. Finallize called by the garbage collection itself after certain amount of time frequently.
+3. Idisposabe is used to cleanup the memory manually. there are unmanaged objects that we need to cleanup manually which iherits IDisposable interface we can
+relase memory for such kinds of objects by using keyword. eg sqlconnection, filestream,
+
+In try catch block if we return something then the finally block will get extecuted or not?
+finally block will get called no matter what
+
+If we have interface in which I have two methods with same name and we inherit that with class what will happen
+Nothing will happen If we impliment iterface methods then only one method will generate.
+
+If we use using statement and if error will occured will that free up the memory.?
+yes thats why we used using statement and If we want wo manually freeup the memory then need to use SqlConObj.dispose();
+
+Example of method overriing real life.
+
+How many rows and columns will return if we use cross joins?
+
+07021996@Uan
+Please let me know if you need anything else
+Xoriant - access code - Fny8N$iH UserName- 964528
+
+Xaml ns
+
+Unit Testing
+1. MSTest - It is a already embebed or come with visual studio and It will create multiple instances of class when we test multiple methods. TestClass
+will represent Test class and TestMethod will represent TestMethod. TestIntializeer attribute method act like as constructor which runs before every test.
+2. NTest - This need to be install from nuget package and It has some syntactical diff like TestFixture indicates test class and Test indicates test method.
+It will create only on instance of a class and run tests. It also has Setup attritube which perorms the setup before each test. FixtureifeCycle(LifeCycle.InstanceperTestCase)
+which creates seperate instance per methods.
+3.TearDown is like a destructor in Nunit and in MSTest Testcleanup
+
+
+Copy contructor in c#
+
+# .net framewrok version and What is in that new.?
+
+
+Continers in wpf
+grid, canvas
+
+Mocking in WPF unit Testing
+
+How can we test Private method in unit test.
+
+If method does not have return type and method is not private how can we test it in unit testing.
+
+programs.
+Fibonacci series. Done
+Prime numbers. Done
+armstrong number. Done 371 = (3*3*3)+(7*7*7)+(1*1*1)      
+
+Swap numbers.
+
+How can we use application level resources in xaml.?
+
+Syntax of Iconverter
+  <Button Content="Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="50" Margin="230,101,0,0" 
+  IsEnabled="{Binding Path=Text, ElementName=txtFirstName,Converter={StaticResource valueconverter},ConverterParameter="Shubham"}"></Button>  
+
+Uniform grid in WPF.
+How can we remove textbox etc resources from memory?
+How to sort a list of string by using Linq?
+What is find in linq
+
+can we perform indexing or searching on enum.
+
+
+Default accessmodifiers for variables and methods?
+1. Variables - private
+2. Class - Internal
+3. Methods - 
+
+Dynamic vs var
+1. Var resolves at compileTime.It is statically type eg If you write var a=10 and hover over the mouse then you will see that a is an int now and we can also 
+access predefines methods of a.
+2. Dynamic is resolves at runtime It is completely dynamic eg if you write dynamic a="shubham" you hover over mouse on d you cannot see the datatype
+and you cannot access predefines methods as well.
+
+
+I'm writing to respectfully request a slight reschedule of my interview if possible,I've unfortunately come down with a cold and fever overnight.
+I expect to be fully recovered within two three days. Would it be possible to reschedule the interview for 12th Jan.  
+
+I reviewed the job description, I confirm my interest and suitability for the position.
